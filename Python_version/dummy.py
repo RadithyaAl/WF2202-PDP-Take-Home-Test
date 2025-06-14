@@ -1,6 +1,7 @@
 import pdpcore
 """
 
+
 okay, let say that we have list A, x, and b
 
 okay, let the matrix is in form of Ax = b, then 
@@ -61,13 +62,13 @@ the matrix is U = [[100, 0, 0, 0, 50],
                    [X1T1, X2T1, X3T1, X4T1,],
                     ......... ]
 """
-
+"""
 # coefficient constants
 k = 0.835
 rod_length = 10
 dx = 2
 dt = 0.1
-time_limit = 5
+time_limit = 0.5
 
 # --- Adjust dx if it doesn't fit rod_length exactly ---
 x_intervals = round(rod_length / dx)
@@ -79,14 +80,13 @@ y_node_count = int(time_limit / dt) + 1
 lamb = (k * dt) / (dx ** 2)
 
 U = [[0 for i in range(x_node_count)] for j in range(y_node_count)]
-
-# define the initial condition
+"""
+"""# define the initial condition
 for t in range(y_node_count):
     U[t][0] = 100.0  # Left boundary
     U[t][-1] = 50.0  # Right boundary
+"""
 
-for i in range(len(U)):
-    print(U[i])
 
 """
 okay now that the matrices for both space and time is defined. next is perform the operation using implicit method.
@@ -96,7 +96,7 @@ i = time
 j = spatial
 which an be stored as linear equations and solve for U[i][j]
 """
-
+"""
 
 # Interior node count
 N = x_node_count - 2
@@ -111,17 +111,18 @@ for i in range(N):
         A[i][i + 1] = -lamb
 
 for i in range(len(A)):
-    print(A[i])
+    print(A[i])"""
 
 """
 okay that the linear equations is solved. """
 
-# Time-stepping loop
+"""# Time-stepping loop
 for t in range(y_node_count - 1):
     # Build right-hand side vector b using previous time step and boundaries
     b = [U[t][i + 1] for i in range(N)]
     b[0] += lamb * U[t + 1][0]      # left boundary
     b[-1] += lamb * U[t + 1][-1]    # right boundary
+    print(b)
 
     # Deep copy of A to avoid modifying original
     A_copy = [row[:] for row in A]
@@ -135,4 +136,26 @@ for t in range(y_node_count - 1):
 
 # Print final result (formatted)
 for i in range(len(U)):
-    print(U[i])
+    print(U[i])"""
+
+k = 0.1
+rod_length = 1
+dx = 0.05
+dt = 0.005
+time_limit = 1
+# adjusting
+x_intervals = round(rod_length/dx)
+dx = rod_length/x_intervals
+x_node_count = x_intervals + 1
+
+t_node_count = int(time_limit/dt) + 1
+lamb = (k*dt)/(dx**2)
+
+T = [[100 for i in range(x_node_count)] for j in range(t_node_count)]
+
+# define initial condition
+for t in range(t_node_count):
+    T[t][0] = 300 #left boundary
+    T[t][-1] = 300 #right boundary
+
+print(f"T[0] = {T[0]}")
