@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 k = 0.1
 rod_length = 1
 dx = 0.05
-dt = 0.005
-time_limit = 10
+dt = 0.05
+time_limit = 3
 
 # adjusting
 x_intervals = round(rod_length/dx)
@@ -28,15 +28,19 @@ for t in range(t_node_count - 1):
     for i in range(N):
         T[t+1][i+1] = T[t][i+1] + lamb*(T[t][i+2] - 2*T[t][i+1] + T[t][i])
 
+
 # what de helll kok jauh lebih gampang daripada implicit jir
 for i in range(len(T)):
     print(T[i]) 
 
+print(len(T))
+
 x = [i * dx for i in range(x_node_count)]
 
-# Plot temperature profiles for each time step
-for t in range(t_node_count):
-    plt.plot(x, T[t], label=f't={round(t * dt, 2)}s')
+plot_jump = len(T) // 10  # Integer step size
+
+for t in range(0, len(T)):
+    plt.plot(x, T[t], label=f't={round(t * dt, 2)}h')
 
 plt.xlabel('Position')
 plt.ylabel('Temperature')

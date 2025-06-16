@@ -137,7 +137,7 @@ for t in range(y_node_count - 1):
 # Print final result (formatted)
 for i in range(len(U)):
     print(U[i])"""
-
+"""
 k = 0.1
 rod_length = 1
 dx = 0.05
@@ -156,6 +156,51 @@ T = [[100 for i in range(x_node_count)] for j in range(t_node_count)]
 # define initial condition
 for t in range(t_node_count):
     T[t][0] = 300 #left boundary
-    T[t][-1] = 300 #right boundary
+    T[t][-1] = 300 #right boundary"""
+"""
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
-print(f"T[0] = {T[0]}")
+# Example 2D matrix (you can replace this with your own)
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Get matrix dimensions
+rows = len(matrix)
+cols = len(matrix[0])
+
+# Create X, Y, Z for surface plot
+X = [[j for j in range(cols)] for i in range(rows)]
+Y = [[i for j in range(cols)] for i in range(rows)]
+Z = matrix  # Z is already the value matrix
+
+# Create the figure and 3D axes
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Plot the surface
+ax.plot_surface(X, Y, Z, cmap='viridis')
+
+# Set axis labels
+ax.set_xlabel('X (column index)')
+ax.set_ylabel('Y (row index)')
+ax.set_zlabel('Z (value)')
+
+plt.show()
+
+"""
+
+NIM = 13123136 # nim > 8 digit
+NIM = str(NIM)
+I = 1500
+L = 200
+E = int(NIM[3:8])
+M = int(NIM[4:8])
+
+
+print( E,M)
+
+

@@ -17,13 +17,13 @@ x_intervals = round(rod_length/dx)
 dx = rod_length/x_intervals
 x_node_count = x_intervals + 1
 
-y_node_count = int(time_limit/dt) + 1
+t_node_count = int(time_limit/dt) + 1
 lamb = (k*dt)/(dx**2)
 
-U = [[0 for i in range(x_node_count)] for j in range(y_node_count)]
+U = [[0 for i in range(x_node_count)] for j in range(t_node_count)]
 
 # define initial condition
-for t in range(y_node_count):
+for t in range(t_node_count):
     U[t][0] = 100 #left boundary
     U[t][-1] = 50 #right boundary
 
@@ -42,7 +42,7 @@ for i in range(len(A)):
     print(A[i])
 
 #time stepping
-for t in range(y_node_count - 1):
+for t in range(t_node_count - 1):
     b = [U[t][i+1] for i in range(N)]
     b[0] += lamb * U[t][0]      #left boundary
     b[-1] += lamb * U[t][-1]    #right boundary
