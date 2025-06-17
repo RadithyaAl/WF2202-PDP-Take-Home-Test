@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-NIM = 13123031 # nim > 8 digit
+NIM = 13123031 # interchangeable with 13123031
 NIM = str(NIM)
 I = 1500 
 L = 200

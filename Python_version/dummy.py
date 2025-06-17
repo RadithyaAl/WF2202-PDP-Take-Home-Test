@@ -193,14 +193,57 @@ plt.show()
 
 """
 
-NIM = 13123136 # nim > 8 digit
+"""NIM = 13123136 # nim > 8 digit
 NIM = str(NIM)
-I = 1500
+I = -1500  # because the m direction is clockwise
 L = 200
 E = int(NIM[3:8])
 M = int(NIM[4:8])
 
 
 print( E,M)
+"""
+
+"""
+y =300 + sum(n = 'odd numbers 1, 3, 5, 7, ...' to infinity) (-800/(n*pi)*sin(n*pi*x)*exp(-0.1*((n*pi)**2)*t)
+
+y = temperature
+x = position
+t = time
+
+can you plot this temperature vs position overtime using matplotlib? take t from 0 to 3, divide it by 10 equally and plot it into graph . so the graph shows 10 curves that shows temperature vs position when t1 = 0, t2 = ..., ..., t10 = 3
+please also share the code you use
+"""
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Solusi analitik dengan offset +300
+def analytical_temperature_with_offset(x, t, terms=100):
+    result = 300
+    for n in range(1, 2*terms, 2):  # hanya n ganjil: 1, 3, 5, ...
+        term = (-800 / (n * np.pi)) * np.sin(n * np.pi * x) * np.exp(-0.1 * (n * np.pi)**2 * t)
+        result += term
+    return result
+
+# Posisi dari 0 sampai 1, dibagi menjadi 100 titik
+x_vals = np.linspace(0, 1, 100)
+
+# Waktu dari 0 sampai 3, dibagi menjadi 10 bagian
+t_vals = np.linspace(0, 3, 10)
+
+# Plotting
+plt.figure(figsize=(10, 6))
+for t in t_vals:
+    y_vals = [analytical_temperature_with_offset(x, t) for x in x_vals]
+    plt.plot(x_vals, y_vals, label=f't = {t:.2f}s')
+
+plt.xlabel('Position (x)')
+plt.ylabel('Temperature (y)')
+plt.title('Temperature Distribution Over Time (Analytical Solution)')
+plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+plt.grid(True)
+plt.tight_layout()
+plt.show()
 
 
